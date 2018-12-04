@@ -1,24 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   NavLink
-} from 'react-router-dom';
-import './App.css';
-import LogIn from './components/front/LogIn';
-import CreateAccount from './components/front/CreateAccount';
-import ForgotPassword from './components/front/ForgotPassword';
+} from "react-router-dom";
+import "./App.css";
+import LogIn from "./components/front/LogIn";
+import CreateAccount from "./components/front/CreateAccount";
+import ForgotPassword from "./components/front/ForgotPassword";
 
-import Account from './components/admin/account/Account';
-import ResetPassword from './components/admin/resetPassword/ResetPassword';
-import Page from './components/admin/pages/Page';
+import Account from "./components/admin/account/Account";
+import ResetPassword from "./components/admin/resetPassword/ResetPassword";
+import Page from "./components/admin/pages/Page";
+import AdminLayout from "./components/admin/layouts/adminLayout/adminLayout";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-
+        {/**
         <Router>
           <div>
             <header className="Demo-nav">
@@ -41,10 +42,9 @@ class App extends Component {
             <Route path="/admin/page" component={Page} />
           </div>
         </Router>
-
-
-
-      </div >
+*/}
+        <AdminLayout />
+      </div>
     );
   }
 }

@@ -1,0 +1,55 @@
+#roundButton {
+  background-color: white;
+  margin: 8px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 10px solid rgb(0, 218, 192);
+  outline: none;
+  transition: all 0.2s cubic-bezier(0, 1.26, 0.8, 1.28);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+#roundButton {
+  transform: translate3d(0vw, 0, 0);
+}
+#roundButton:hover {
+  transform: translate3d(0vw, 0, 0) scale(1.2, 1.2);
+  background-color: rgb(195, 248, 242);
+}
+#roundButton:active {
+  background-color: rgb(195, 248, 242);
+}
+
+#roundButton.right {
+  transform: translate3d(25vw, 0, 0);
+  margin-left: -25px;
+}
+#roundButton.right:hover {
+  transform: translate3d(25vw, 0, 0) scale(1.2, 1.2);
+}
+
+@media (max-width: 800px) {
+  #roundButton.right:hover {
+    transform: translate3d(35vw, 0, 0) scale(1.2, 1.2);
+    margin-left: -25px;
+  }
+  #roundButton.right {
+    transform: translate3d(35vw, 0, 0);
+    margin-left: -25px;
+  }
+}
+
+@media (max-width: 676px) {
+  #roundButton.right:hover {
+    transform: translate3d(100vw, 0, 0) scale(1.2, 1.2);
+    margin-left: -75px;
+  }
+  #roundButton.right {
+    transform: translate3d(100vw, 0, 0);
+    margin-left: -75px;
+  }
+}

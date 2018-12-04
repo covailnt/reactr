@@ -1,0 +1,10 @@
+#navBar-div {
+  background-color: rgb(240, 240, 240);
+  border-bottom: 2px solid rgb(225, 225, 225);
+  width: 100vw;
+  height: 66px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 800;
+}

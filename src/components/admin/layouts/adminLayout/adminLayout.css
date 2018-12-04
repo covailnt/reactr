@@ -1,0 +1,15 @@
+#childrenDiv {
+  padding-top: 68px;
+}
+
+@media (min-width: 677px) {
+  #childrenDiv {
+    padding-left: 35vw;
+  }
+}
+
+@media (min-width: 800px) {
+  #childrenDiv {
+    padding-left: 25vw;
+  }
+}
