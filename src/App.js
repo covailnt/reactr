@@ -19,31 +19,39 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/**
         <Router>
           <div>
             <header className="Demo-nav">
               <ul>
-                <li><NavLink to="/log-in">Log-In</NavLink></li>
-                <li><NavLink to="/create-account">Create Account</NavLink></li>
-                <li><NavLink to="/forgot-password">Forgot Password</NavLink></li>
-                <li><NavLink to="/admin/account">Account</NavLink></li>
-                <li><NavLink to="/admin/reset-password">Reset Password</NavLink></li>
-                <li><NavLink to="/admin/page">Page</NavLink></li>
+                <li>
+                  <NavLink to="/log-in">Log-In</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/create-account">Create Account</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/forgot-password">Forgot Password</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/admin/account">Account</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/admin/reset-password">Reset Password</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/admin/page">Page</NavLink>
+                </li>
               </ul>
-
             </header>
-            <Redirect from="/" to="/log-in"></Redirect>
+            <Redirect from="/" to="/log-in" />
             <Route path="/log-in" component={LogIn} />
             <Route path="/create-account" component={CreateAccount} />
             <Route path="/forgot-password" component={ForgotPassword} />
-            <Route path="/admin/account" component={Account} />
+            <Route path="/admin/account" component={AdminLayout} />
             <Route path="/admin/reset-password" component={ResetPassword} />
             <Route path="/admin/page" component={Page} />
           </div>
         </Router>
-*/}
-        <AdminLayout />
       </div>
     );
   }
