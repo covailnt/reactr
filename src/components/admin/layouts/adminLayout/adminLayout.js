@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import SideMenu from "./menuButton/menuButton";
+import MenuButton from "./menuButton/menuButton";
 import NavBar from "./navBar/navBar";
-import MenuButton from "./sideMenu/sideMenu";
+import SideMenu from "./sideMenu/sideMenu";
 import "./adminLayout.css";
 
 class adminLayout extends Component {

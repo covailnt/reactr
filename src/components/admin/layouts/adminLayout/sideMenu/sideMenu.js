@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./sideMenu.css";
 
-class sideMenu extends Component {
+class SideMenu extends Component {
   /*
   getMenuItems = props => {
     return props.menuItems.map(menuItems => {
@@ -21,4 +21,4 @@ class sideMenu extends Component {
   }
 }
 
-export default sideMenu;
+export default SideMenu;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./menuButton.css";
 
-class slidingMenuButton extends Component {
+class SlidingMenuButton extends Component {
   render() {
     var buttonPlacement = "left";
     if (this.props.menuVisibility) {
@@ -18,4 +18,4 @@ class slidingMenuButton extends Component {
   }
 }
 
-export default slidingMenuButton;
+export default SlidingMenuButton;
