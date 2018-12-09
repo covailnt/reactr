@@ -5,15 +5,17 @@ import "./Account.css";
 import DeleteAccount from "./DeleteAccount";
 import Payment from "./Payment";
 import Profile from "./Profile";
-import Admin from "../layouts/adminLayout/adminLayout";
+import AdminLayout from "../layouts/adminLayout/adminLayout";
 
 function Account(props) {
   return (
-    <Admin>
-      <Profile />
-      <Payment />
-      <DeleteAccount />
-    </Admin>
+    <div id="account-div">
+      <AdminLayout>
+        <Profile />
+        <Payment />
+        <DeleteAccount />
+      </AdminLayout>
+    </div>
   );
 }
 

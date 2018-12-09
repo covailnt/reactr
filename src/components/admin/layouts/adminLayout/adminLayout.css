@@ -1,15 +1,16 @@
 #childrenDiv {
+  padding: 100px;
   padding-top: 68px;
 }
 
 @media (min-width: 677px) {
   #childrenDiv {
-    padding-left: 35vw;
+    padding-left: 40vw;
   }
 }
 
 @media (min-width: 800px) {
   #childrenDiv {
-    padding-left: 25vw;
+    padding-left: 30vw;
   }
 }
