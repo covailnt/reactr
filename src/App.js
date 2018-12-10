@@ -45,7 +45,13 @@ class App extends Component {
           <div>
             <header className="Demo-nav">
               <div>
-                <Navbar if="demo-nav" color="dark" light expand="lg">
+                <Navbar
+                  id="Demo-NavBar"
+                  if="demo-nav"
+                  color="dark"
+                  light
+                  expand="lg"
+                >
                   <NavbarToggler onClick={this.toggle} />
                   <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
