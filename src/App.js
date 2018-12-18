@@ -5,14 +5,7 @@ import {
   Redirect,
   NavLink
 } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem
-} from "reactstrap";
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 
 import "./App.css";
 import LogIn from "./components/front/LogIn";
@@ -22,7 +15,6 @@ import ForgotPassword from "./components/front/ForgotPassword";
 import Account from "./components/admin/account/Account";
 import ResetPassword from "./components/admin/resetPassword/ResetPassword";
 import Page from "./components/admin/pages/Page";
-import AdminLayout from "./components/admin/layouts/adminLayout/adminLayout";
 
 class App extends Component {
   constructor(props) {
@@ -81,13 +73,15 @@ class App extends Component {
                 </Navbar>
               </div>
             </header>
-            <Redirect from="/" to="/log-in" />
-            <Route path="/log-in" component={LogIn} />
-            <Route path="/create-account" component={CreateAccount} />
-            <Route path="/forgot-password" component={ForgotPassword} />
-            <Route path="/admin/account" component={Account} />
-            <Route path="/admin/reset-password" component={ResetPassword} />
-            <Route path="/admin/page" component={Page} />
+            <div id="body">
+              <Redirect from="/" to="/log-in" />
+              <Route path="/log-in" className="main" component={LogIn} />
+              <Route path="/create-account" component={CreateAccount} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/admin/account" component={Account} />
+              <Route path="/admin/reset-password" component={ResetPassword} />
+              <Route path="/admin/page" component={Page} />
+            </div>
           </div>
         </Router>
       </div>
