@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
-
+import isValidEmail from '../../../utils/validity';
 
 class Profile extends Component {
     state = {
@@ -10,6 +10,11 @@ class Profile extends Component {
             profileName: '',
             profileEmailAddress: ''
         },
+        buttons: {
+            appNotifications: true,
+            emailNotifications: false
+        },
+
         formValid: false
     }
     handleUserInput = (e) => {
@@ -33,6 +38,8 @@ class Profile extends Component {
                 break;
             }
             case 'profileEmailAddress': {
+                let validEmail = isValidEmail(value);
+                console.log(validEmail);
                 break;
             }
             default: {
@@ -49,6 +56,18 @@ class Profile extends Component {
     validateForm() {
 
     }
+    toggleButton(e) {
+        const name = e.target.name;
+        const value = !this.state.buttons[name];
+        console.log(name);
+        console.log(value);
+        let values = { ...this.state.buttons, [name]: value };
+        this.setState({
+            buttons: values
+        });
+        console.log(values);
+    }
+
     render() {
         return (
             <Row className="Account-widget Account-profile">
@@ -94,14 +113,15 @@ class Profile extends Component {
                         <br />
 
                         <Label> App Notifications</Label>
-                        <Button size="small" className="float-right" color="primary">
-                            On
+
+                        <Button onClick={(event) => this.toggleButton(event)} name="appNotifications" size="small" className="float-right" color={this.state.buttons.appNotifications ? 'primary' : 'secondary'}>
+                            {this.state.buttons.appNotifications ? 'On' : 'Off'}
                         </Button>
                         <br />
                         <br />
                         <Label> Email Notifications</Label>
-                        <Button size="small" className="float-right" color="secondary">
-                            Off
+                        <Button onClick={(event) => this.toggleButton(event)} name="emailNotifications" size="small" className="float-right" color={this.state.buttons.emailNotifications ? 'primary' : 'secondary'}>
+                            {this.state.buttons.emailNotifications ? 'On' : 'Off'}
                         </Button>
 
                         <br />
