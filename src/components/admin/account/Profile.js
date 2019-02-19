@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, Row, Col, FormGroup, Label, Input, Alert } from 'reactstrap';
 import isValidEmail from '../../../utils/validity';
 
 class Profile extends Component {
+    constructor() {
+        super();
+        this.timeout = 0;
+    }
     state = {
-        values: {
-            profilePhoto: '',
-            profileName: '',
-            profileEmailAddress: ''
-        },
+        emailValid: false,
+        emailValue: null,
         buttons: {
             appNotifications: true,
             emailNotifications: false
         },
-
         formValid: false
     }
     handleUserInput = (e) => {
         const { name, value } = e.target;
 
-        let values = { ...this.state.values, [name]: value };
-
-        this.setState({
-            values: values
-        }, () => { this.validateField(name, value) });
+        this.validateField(name, value);
 
     }
     validateField(name, value) {
@@ -38,8 +34,28 @@ class Profile extends Component {
                 break;
             }
             case 'profileEmailAddress': {
-                let validEmail = isValidEmail(value);
+                let validEmail;
+                validEmail = isValidEmail(value);
+                console.log(value);
                 console.log(validEmail);
+                this.setState({
+                    emailValue: value,
+                    emailValid: validEmail
+                }, this.validateForm);
+                // if (this.timeout) {
+                //     clearTimeout(this.timeout);
+                // }
+                // this.timeout = setTimeout(() => {
+
+                // }, 500);
+
+
+                // this.setState({
+                //     emailValid: validEmail
+                // }, this.validateForm);
+
+
+
                 break;
             }
             default: {
@@ -59,8 +75,7 @@ class Profile extends Component {
     toggleButton(e) {
         const name = e.target.name;
         const value = !this.state.buttons[name];
-        console.log(name);
-        console.log(value);
+
         let values = { ...this.state.buttons, [name]: value };
         this.setState({
             buttons: values
@@ -69,6 +84,14 @@ class Profile extends Component {
     }
 
     render() {
+        let emailErrorMessage;
+        if ((this.state.emailValue && !this.state.emailValid) || this.state.emailValue == "") {
+            emailErrorMessage = <Alert color="danger">
+                Email address is invalid.
+            </Alert>
+        } else {
+            emailErrorMessage = "";
+        }
         return (
             <Row className="Account-widget Account-profile">
                 <Col sm="12" md="3">
@@ -96,6 +119,7 @@ class Profile extends Component {
                         </FormGroup>
                         <FormGroup>
                             <Label for="profileEmailAddress">Email address</Label>
+                            {emailErrorMessage}
                             <Input
                                 onChange={(event) => this.handleUserInput(event)}
                                 type="text"

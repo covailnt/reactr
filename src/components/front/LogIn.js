@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, Row, Col, FormGroup, Label, Input, Alert } from 'reactstrap';
 import Access from './layouts/Access';
 import './LogIn.css';
 
@@ -20,6 +20,11 @@ function LogIn(props) {
                         <Col md="6">
                             <Link className="float-right" to="/create-account">Create Account</Link>
                         </Col>
+                        <Col md="12">
+                            <Alert color="danger">
+                                Email address or password is incorrect, please try again.
+                            </Alert>
+                        </Col>
                     </Row>
 
                 </div>
@@ -28,6 +33,7 @@ function LogIn(props) {
                         <FormGroup>
                             <Label for="exampleEmail">Email</Label>
                             <Input type="email" name="email" id="exampleEmail" placeholder="e@mail.com" />
+                            <small>We'll never share your email with anyone else.</small>
                         </FormGroup>
                         <FormGroup>
                             <Label for="examplePassword">Password</Label>
@@ -47,7 +53,7 @@ function LogIn(props) {
                             </Col>
                         </Row>
                         <br></br>
-                        <Button>Log In</Button>
+                        <Button color="primary">Log In</Button>
                     </Form>
                 </div>
                 <br></br>
