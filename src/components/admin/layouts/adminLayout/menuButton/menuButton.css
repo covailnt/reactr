@@ -8,9 +8,9 @@
   outline: none;
   transition: all 0.2s cubic-bezier(0, 1.26, 0.8, 1.28);
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
-  z-index: 1000;
+  z-index: 999;
 }
 
 #roundButton {

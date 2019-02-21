@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
+import reactstrapCjs, { Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
 import './DeleteAccount.css';
 class DeleteAccount extends Component {
     state = {
@@ -15,8 +15,9 @@ class DeleteAccount extends Component {
     }
     validateField() {
         this.setState({
-            formValid: this.state.values.deleteAccount.match(/^(DELETE)$/)
+            formValid: this.state.values.deleteAccount.match(/^DELETE$/)
         });
+
     }
 
     render() {

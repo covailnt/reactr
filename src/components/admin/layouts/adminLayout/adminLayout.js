@@ -9,7 +9,7 @@ class adminLayout extends Component {
     super(props, context);
 
     this.state = {
-      visible: true
+      visible: false
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -39,7 +39,6 @@ class adminLayout extends Component {
           menuItems={this.props.menuItems}
         />
 
-        <NavBar id="navBar" />
         <MenuButton
           id="menuButton"
           handleOnClick={this.handleOnClick}
