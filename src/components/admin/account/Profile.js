@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -11,6 +12,12 @@ import {
   Alert
 } from "reactstrap";
 import isValidEmail from "../../../utils/validity";
+=======
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Form, Row, Col, FormGroup, Label, Input, Alert } from 'reactstrap';
+import isValidEmail from '../../../utils/validity';
+>>>>>>> parent of d3adc12... dummy commit
 
 class Profile extends Component {
   constructor() {
