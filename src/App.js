@@ -15,7 +15,7 @@ import ForgotPassword from "./components/front/ForgotPassword";
 import Account from "./components/admin/account/Account";
 import ResetPassword from "./components/admin/resetPassword/ResetPassword";
 import Page from "./components/admin/pages/Page";
-
+import SignUpPage from "./components/Firebase/index";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -32,6 +32,8 @@ class App extends Component {
   }
   render() {
     return (
+      //<SignUpPage/>
+
       <div className="App">
         <Router>
           <div>

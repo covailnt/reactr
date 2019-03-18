@@ -6,7 +6,17 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import AdminLayout from "./components/admin/layouts/adminLayout/adminLayout";
-ReactDOM.render(<App />, document.getElementById("root"));
+import Firebase, { FirebaseContext } from "./components/Firebase";
+
+const getFirebase = () => {
+  return new Firebase();
+};
+ReactDOM.render(
+  <FirebaseContext.Provider value={getFirebase()}>
+    <App />
+  </FirebaseContext.Provider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
