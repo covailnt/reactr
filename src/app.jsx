@@ -6,7 +6,7 @@ import Login from "./pages/login";
 import store from "./store";
 import { Provider } from "react-redux";
 
-import { Router, Route } from "react-router";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { syncHistoryWithStore } from "react-router-redux";
 
 class App extends Component {
