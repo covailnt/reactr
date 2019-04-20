@@ -40,7 +40,6 @@ class LogIn extends Component {
                 // onBlur={this.handleUserInput}
                 type="email"
                 name="email"
-                value={email}
                 onChange={this.onChange}
                 //type="text"
                 placeholder="Email Address"
@@ -52,7 +51,6 @@ class LogIn extends Component {
               <Label for="examplePassword">Password</Label>
               <Input
                 name="password"
-                value={password}
                 onChange={this.onChange}
                 type="password"
                 placeholder="Password"
@@ -94,4 +92,4 @@ class LogIn extends Component {
   }
 }
 
-export default logIm;
+export default LogIn;
