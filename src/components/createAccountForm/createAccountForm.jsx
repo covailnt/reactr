@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+
 import { onChange, mapStateToProps, mapDispatchToProps } from "./actions";
 
 class CreateAccountForm extends Component {
@@ -14,9 +14,7 @@ class CreateAccountForm extends Component {
               <h4>Create Account</h4>
             </Col>
             <Col md="6">
-              <Link to="/" className="float-right">
-                Log In
-              </Link>
+              <a className="float-right">Log In</a>
             </Col>
           </Row>
         </div>

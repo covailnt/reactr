@@ -1,10 +1,8 @@
-import { combineReducers } from "redux";
-import createAccountReducer from "./createAccount";
-import routerReducer from "../../routing/reducer";
+import { combineReducers } from 'redux';
+import createAccountReducer  from './createAccount';
 
 const rootReducer = combineReducers({
-  createAccountForm: createAccountReducer,
-  router: routerReducer
+    createAccountForm: createAccountReducer
 });
 
 export default rootReducer;
