@@ -10,7 +10,6 @@ import {
   Input,
   FormText
 } from "reactstrap";
-import "./ForgotPassword.css";
 
 function ForgotPassword(props) {
   return (
@@ -21,7 +20,7 @@ function ForgotPassword(props) {
             <h4>Forgot Password</h4>
           </Col>
           <Col md="6">
-            <Link className="float-right" to="/log-in">
+            <Link className="float-right" to="/">
               Log In
             </Link>
           </Col>

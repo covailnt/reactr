@@ -27,7 +27,9 @@ class LogIn extends Component {
               <h4>Log In</h4>
             </Col>
             <Col md="6">
-              <a className="float-right">Create Account</a>
+              <Link to="/create-account" className="float-right">
+                Create Account
+              </Link>
             </Col>
             <Col md="12" />
           </Row>
