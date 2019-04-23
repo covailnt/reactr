@@ -1,10 +1,35 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
+import { setEmail, setPassword } from "../../store/actions/userActions";
+import { Link } from "react-router-dom";
 
-import { onChange, mapStateToProps, mapDispatchToProps } from "./actions";
+const mapStateToProps = state => {
+  return { email: state.email };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching plain actions
+    setEmail: email => dispatch(setEmail(email)),
+    setPassword: password => dispatch(setPassword(password)),
+    createAccount: user => dispatch({ type: "CREATE_ACCOUNT", payload: user })
+  };
+};
 
 class CreateAccountForm extends Component {
+  onChange = e => {
+    switch (e.target.name) {
+      case "email":
+        this.props.setEmail(e.target.value);
+        break;
+      case "password":
+        this.props.setPassword(e.target.value);
+        break;
+      default:
+        console.log("default onChange createAccont");
+    }
+  };
   render() {
     return (
       <div className="Access">
@@ -14,7 +39,9 @@ class CreateAccountForm extends Component {
               <h4>Create Account</h4>
             </Col>
             <Col md="6">
-              <a className="float-right">Log In</a>
+              <Link to="/" className="float-right">
+                Log In
+              </Link>
             </Col>
           </Row>
         </div>

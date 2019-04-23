@@ -6,7 +6,7 @@ import Login from "./pages/login";
 import store from "./store";
 import { Provider } from "react-redux";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { syncHistoryWithStore } from "react-router-redux";
 
 class App extends Component {
@@ -14,8 +14,15 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <Route path="/" exact strict component={Login} />
-          <Route path="/createAccount" exact strict component={CreateAccount} />
+          <Switch>
+            <Route path="/" exact strict component={Login} />
+            <Route
+              path="/create-account"
+              exact
+              strict
+              component={CreateAccount}
+            />
+          </Switch>
         </Router>
       </Provider>
     );

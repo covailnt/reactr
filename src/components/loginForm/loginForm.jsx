@@ -10,14 +10,46 @@ import {
   Input,
   Alert
 } from "reactstrap";
+import {
+  setEmail,
+  setPassword,
+  fakeFireBaseLogin
+} from "../../store/actions/userActions";
+import { connect } from "react-redux";
 
-const INITIAL_STATE = {
-  email: "",
-  password: "",
-  error: null
+const mapStateToProps = state => {
+  return { email: state.email };
 };
 
-class LogIn extends Component {
+const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching plain actions
+    setEmail: email => dispatch(setEmail(email)),
+    setPassword: password => dispatch(setPassword(password)),
+    createAccount: user => dispatch({ type: "CREATE_ACCOUNT", payload: user })
+  };
+};
+
+const onSubmit = () => {
+  //
+  //    this is where we left off for next time !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //
+};
+
+class LogInForm extends Component {
+  onChange = e => {
+    switch (e.target.name) {
+      case "email":
+        this.props.setEmail(e.target.value);
+        break;
+      case "password":
+        this.props.setPassword(e.target.value);
+        break;
+      default:
+        console.log("default onChange createAccont");
+    }
+  };
+
   render() {
     return (
       <div className="Login">
@@ -27,7 +59,9 @@ class LogIn extends Component {
               <h4>Log In</h4>
             </Col>
             <Col md="6">
-              <a className="float-right">Create Account</a>
+              <Link to="/create-account" className="float-right">
+                Create Account
+              </Link>
             </Col>
             <Col md="12" />
           </Row>
@@ -91,5 +125,7 @@ class LogIn extends Component {
     );
   }
 }
-
-export default LogIn;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LogInForm);
