@@ -6,8 +6,8 @@ function CreateAccount(props) {
   return (
     <Front>
       <CreateAccountForm></CreateAccountForm>
-    </Front>    
+    </Front>
   )
 }
- 
- export default CreateAccount;
+
+export default CreateAccount;

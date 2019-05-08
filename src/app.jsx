@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 import CreateAccount from "./pages/createAccount";
 import Login from "./pages/login";
+import ForgotPassword from "./pages/forgotPassword";
 
 import store from "./store";
 import { Provider } from "react-redux";
@@ -10,7 +11,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { syncHistoryWithStore } from "react-router-redux";
 
 // import Firebase, { FirebaseContext } from "./components/Firebase";
-
 // ReactDOM.render(
 //   <FirebaseContext.Provider value={new Firebase()}>
 //     <App />
@@ -25,12 +25,8 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/" exact strict component={Login} />
-            <Route
-              path="/create-account"
-              exact
-              strict
-              component={CreateAccount}
-            />
+            <Route path="/forgot-password" exact strict component={ForgotPassword} />
+            <Route path="/create-account" exact strict component={CreateAccount} />
           </Switch>
         </Router>
       </Provider>
