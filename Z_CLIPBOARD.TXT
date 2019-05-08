@@ -1,0 +1,153 @@
+ onFacebook = event => {
+    this.props.firebase
+      .doSignInWithFacebook()
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.Account);
+      })
+      .catch(error => {
+        console.log("***Error***" + error);
+        this.setState({ error });
+      });
+  }
+  onGoogle = event => {
+    this.props.firebase
+      .doSignInWithGoogle()
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.Account);
+      })
+      .catch(error => {
+        console.log("***Error***" + error);
+        this.setState({ error });
+      });
+  }
+  onTwitter = event => {
+    this.props.firebase
+      .doSignInWithTwitter()
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.Account);
+      })
+      .catch(error => {
+        console.log("***Error***" + error);
+        this.setState({ error });
+      });
+  }
+  onSubmit = event => {
+    const { email, password } = this.state;
+    event.preventDefault();
+    
+    this.props.firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.Account);
+      })
+      .catch(error => {
+        console.log("***Error***" + error);
+        this.setState({ error });
+      });
+
+
+  };
+
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+createUser = () => {
+    //
+    //  make sure passwords match here
+    //
+    window.alert("inside createUser");
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.Account);
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ error });
+      });
+    window.alert("after firebase call");
+  };
+
+  createUserFacebook = () => {
+    this.props.firebase
+      .doSignInWithFacebook()
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.Account);
+      })
+      .catch(error => {
+        console.log("***Error***" + error);
+        this.setState({ error });
+      });
+  };
+
+  createUserGoogle = () => {
+    this.props.firebase
+      .doSignInWithGoogle()
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.Account);
+      })
+      .catch(error => {
+        console.log("***Error***" + error);
+        this.setState({ error });
+      });
+  };
+
+  createUserTwitter = () => {
+    this.props.firebase
+      .doSignInWithTwitter()
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.Account);
+      })
+      .catch(error => {
+        console.log("***Error***" + error);
+        this.setState({ error });
+      });
+  };
+
+  createUserGoogle = () => {
+    this.props.firebase
+      .doSignInWithGoogle()
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.Account);
+      })
+      .catch(error => {
+        console.log("***Error***" + error);
+        this.setState({ error });
+      });
+  };
+
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+
+
+const CreateAccountForm = compose(
+  withRouter,
+  withFirebase
+)(CreateAccount);
+
+export default CreateAccountForm;
