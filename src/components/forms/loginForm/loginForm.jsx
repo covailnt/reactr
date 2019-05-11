@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Form, Row, Col, FormGroup, Label, Input, Alert } from "reactstrap";
-import { setEmail, setPassword, login } from "../../../store/actions/userActions";
+import { setEmail, setPassword } from "../../../store/actions/userActions";
 import { connect } from "react-redux";
 
 
@@ -25,6 +25,11 @@ const mapDispatchToProps = dispatch => {
 
 class LogInForm extends Component {
 
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
   onClick = () => {
     this.props.login();
   };
@@ -38,7 +43,7 @@ class LogInForm extends Component {
         this.props.setPassword(e.target.value);
         break;
       default:
-        console.log("default onChange createAccont");
+        console.log("default onChange createAccont from logInForm");
     }
   };
 
@@ -118,7 +123,4 @@ class LogInForm extends Component {
     );
   }
 }
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LogInForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);

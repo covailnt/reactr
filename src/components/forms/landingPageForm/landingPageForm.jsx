@@ -1,32 +1,44 @@
 import React, { Component } from "react";
-import { setEmail, setPassword, logout } from "../../../store/actions/userActions";
 import { connect } from "react-redux";
+import { setEmail, setPassword } from "../../../store/actions/userActions";
+import { Button, Form, Row, Col, FormGroup, Label, Input, FormText } from "reactstrap";
 
-import {
-    Button,
-    Form,
-    Row,
-    Col,
-    FormGroup,
-    Label,
-    Input,
-    FormText
-} from "reactstrap";
+
+
+
+const mapStateToProps = state => {
+    return {
+        loggedIn: state.loggedIn,
+        email: state.email,
+        password: state.password
+    };
+};
+
 
 const mapDispatchToProps = dispatch => {
     return {
         setEmail: email => dispatch(setEmail(email)),
         setPassword: password => dispatch(setPassword(password)),
-        logout: () => dispatch(logout())
+        logout: () => {
+            console.log(" inside dispatcher");
+            dispatch({ type: "LOGOUT_SAGA", payload: {} })
+        }
     };
 };
 
 
+
 class LandingPageForm extends Component {
+    constructor(props) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+    }
 
     onClick() {
+        console.log("inside onClick");
         this.props.logout();
     }
+
 
     render() {
         return (
@@ -40,13 +52,14 @@ class LandingPageForm extends Component {
                 </div>
                 <div className="Create-account-form">
                     <Form>
-                        <Button>Log Out</Button>
+                        <Button color="secondary" onClick={this.onClick}>Log Out</Button>
                     </Form>
                 </div>
             </div>
         );
     }
-
 }
 
-export default connect(mapDispatchToProps)(LandingPageForm);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPageForm);

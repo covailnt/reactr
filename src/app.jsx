@@ -4,7 +4,7 @@ import Routes from "./routes/routes"
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import createAccountReducer from "./store/reducers/createAccount"
 import createSagaMiddleware from "redux-saga"
-import watchLogin from "./store/sagas/authentication"
+import sagas from "./store/sagas/authentication"
 
 
 
@@ -28,7 +28,7 @@ const sagaMiddleWare = createSagaMiddleware();
 const middleware = applyMiddleware(sagaMiddleWare);
 const composedEnhancers = compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 const store = createStore(createAccountReducer, initial_state, composedEnhancers);
-sagaMiddleWare.run(watchLogin);
+sagaMiddleWare.run(sagas);
 
 
 
