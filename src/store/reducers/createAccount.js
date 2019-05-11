@@ -1,21 +1,22 @@
 const createAccountReducer = (state = {}, action) => {
     switch (action.type) {
         case "SET_EMAIL": {
-            return { ...state, email: action.payload };
-            break;
+            return Object.assign({}, state, { email: action.payload });
         }
         case "SET_PASSWORD": {
-            return { ...state, password: action.payload };
-            break;
+            return Object.assign({}, state, { password: action.payload });
         }
-        case "LOGGED_IN": {
-            return { ...state, created: action.payload};
-            break;
+        case "LOGIN": {
+            console.log("inside reducer");
+            return Object.assign({}, state, { loggedIn: "YES" });
+        }
+        case "LOGOUT": {
+            return Object.assign({}, state, { loggedIn: "NO" });
         }
         default:
             return state;
-   };
+    };
 
 };
-   
+
 export default createAccountReducer;

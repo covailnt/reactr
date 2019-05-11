@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, Row, Col, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
-import { setEmail, setPassword } from "../../store/actions/userActions";
+import { setPassword, setEmail } from "../../../store/actions/userActions";
 import { Link } from "react-router-dom";
 
 const mapStateToProps = state => {

@@ -1,42 +1,34 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Row,
-  Col,
-  FormGroup,
-  Label,
-  Input,
-  Alert
-} from "reactstrap";
-import {
-  setEmail,
-  setPassword,
-  fakeFireBaseLogin
-} from "../../store/actions/userActions";
+import { Button, Form, Row, Col, FormGroup, Label, Input, Alert } from "reactstrap";
+import { setEmail, setPassword, login } from "../../../store/actions/userActions";
 import { connect } from "react-redux";
 
-const mapStateToProps = state => {
-  return { email: state.email };
-};
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    // dispatching plain actions
-    setEmail: email => dispatch(setEmail(email)),
-    setPassword: password => dispatch(setPassword(password)),
-    createAccount: user => dispatch({ type: "CREATE_ACCOUNT", payload: user })
+    loggedIn: state.loggedIn,
+    email: state.email,
+    password: state.password
   };
 };
 
-const onSubmit = () => {
-  //
-  //    this is where we left off for next time !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setEmail: email => dispatch(setEmail(email)),
+    setPassword: password => dispatch(setPassword(password)),
+    login: () => dispatch({ type: "LOGIN_SAGA", payload: {} })
+  };
 };
 
+
 class LogInForm extends Component {
+
+  onClick = () => {
+    this.props.login();
+  };
+
   onChange = e => {
     switch (e.target.name) {
       case "email":
@@ -50,13 +42,14 @@ class LogInForm extends Component {
     }
   };
 
+
   render() {
     return (
       <div className="Login">
         <div className="Login-header">
           <Row>
             <Col md="6">
-              <h4>Log In</h4>
+              <h4>Log In </h4>
             </Col>
             <Col md="6">
               <Link to="/create-account" className="float-right">
@@ -106,7 +99,7 @@ class LogInForm extends Component {
               </Col>
             </Row>
             <br />
-            <Button color="primary">Log In</Button>
+            <Button color="primary" onClick={this.onClick}>Log In</Button>
           </Form>
           <br />
           <div className="Social-form">

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import CreateAccount from "./pages/createAccount";
-import Login from "./pages/login";
-import ForgotPassword from "./pages/forgotPassword";
-import store from "./store";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Routes from "./routes/routes"
-import { syncHistoryWithStore } from "react-router-redux";
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
+import createAccountReducer from "./store/reducers/createAccount"
+import createSagaMiddleware from "redux-saga"
+import watchLogin from "./store/sagas/authentication"
+
+
 
 // import Firebase, { FirebaseContext } from "./components/Firebase";
 // ReactDOM.render(
@@ -15,6 +15,23 @@ import { syncHistoryWithStore } from "react-router-redux";
 //   </FirebaseContext.Provider>,
 //   document.getElementById("root")
 // );
+
+
+
+const initial_state = {
+  loggedIn: "NO",
+  email: "",
+  password: ""
+}
+
+const sagaMiddleWare = createSagaMiddleware();
+const middleware = applyMiddleware(sagaMiddleWare);
+const composedEnhancers = compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(createAccountReducer, initial_state, composedEnhancers);
+sagaMiddleWare.run(watchLogin);
+
+
+
 
 class App extends Component {
   render() {
@@ -27,5 +44,3 @@ class App extends Component {
 }
 export default App;
 
-//history={history}
-//const history = syncHistoryWithStore(browserHistory, store);

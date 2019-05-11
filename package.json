@@ -48,6 +48,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "redux-saga": "^1.0.2"
   }
 }

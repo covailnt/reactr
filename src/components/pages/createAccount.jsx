@@ -1,6 +1,6 @@
 import React from "react";
-import Front from '../layout/front/front';
-import CreateAccountForm from '../components/createAccountForm/createAccountForm';
+import Front from "../layout/front/front"
+import CreateAccountForm from '../forms/createAccountForm/createAccountForm';
 
 function CreateAccount(props) {
   return (

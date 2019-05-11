@@ -1,6 +1,6 @@
 import React from "react";
 import Front from '../layout/front/front';
-import ForgotPasswordForm from '../components/forgotPasswordForm/forgotPasswordForm';
+import ForgotPasswordForm from '../forms/forgotPasswordForm/forgotPasswordForm';
 
 
 function ForgotPassword(props) {
