@@ -20,7 +20,6 @@ const mapDispatchToProps = dispatch => {
         setEmail: email => dispatch(setEmail(email)),
         setPassword: password => dispatch(setPassword(password)),
         logout: () => {
-            console.log(" inside dispatcher");
             dispatch({ type: "LOGOUT_SAGA", payload: {} })
         }
     };
@@ -35,7 +34,6 @@ class LandingPageForm extends Component {
     }
 
     onClick() {
-        console.log("inside onClick");
         this.props.logout();
     }
 

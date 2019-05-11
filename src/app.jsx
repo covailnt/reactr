@@ -8,7 +8,7 @@ import sagas from "./store/sagas/authentication"
 
 
 
-// import Firebase, { FirebaseContext } from "./components/Firebase";
+// import Firebase, { FirebaseContext } from "./firebase";
 // ReactDOM.render(
 //   <FirebaseContext.Provider value={new Firebase()}>
 //     <App />

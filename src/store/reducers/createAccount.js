@@ -10,7 +10,6 @@ const createAccountReducer = (state = {}, action) => {
             return Object.assign({}, state, { loggedIn: "YES" });
         }
         case "LOGOUT": {
-            console.log("inside reducer");
             return Object.assign({}, state, { loggedIn: "NO" });
         }
         default:

@@ -10,6 +10,7 @@ export default function* () {
 }
 
 
+
 function* watchLogin() {
     yield takeLatest("LOGIN_SAGA", loginAsync);
 }
@@ -22,7 +23,6 @@ function* loginAsync() {
 export function* watchLogout() {
     yield takeLatest("LOGOUT_SAGA", logoutAsync)
 }
-
 function* logoutAsync() {
     yield put(logout());
 }
