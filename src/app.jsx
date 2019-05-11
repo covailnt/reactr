@@ -1,20 +1,12 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
-import Routes from "./routes/routes"
+import Routes from "./routes/routes";
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
-import createAccountReducer from "./store/reducers/createAccount"
-import createSagaMiddleware from "redux-saga"
-import sagas from "./store/sagas/authentication"
+import createAccountReducer from "./store/reducers/createAccount";
+import createSagaMiddleware from "redux-saga";
+import sagas from "./store/sagas/authentication";
+//import { withAuthentication } from "./firebase/session";
 
-
-
-// import Firebase, { FirebaseContext } from "./firebase";
-// ReactDOM.render(
-//   <FirebaseContext.Provider value={new Firebase()}>
-//     <App />
-//   </FirebaseContext.Provider>,
-//   document.getElementById("root")
-// );
 
 
 
@@ -43,4 +35,5 @@ class App extends Component {
   }
 }
 export default App;
+//export default withAuthentication(App);
 

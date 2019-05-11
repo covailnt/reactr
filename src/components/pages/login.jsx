@@ -3,6 +3,8 @@ import Front from "../layout/front/front";
 import LoginForm from "../forms/loginForm/loginForm";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { withFirebase } from '../../firebase';
+
 
 const mapStateToProps = state => {
   return {
@@ -18,9 +20,7 @@ class Login extends Component {
         <Front>
           <LoginForm />
         </Front>
-
-
     )
   }
 }
-export default connect(mapStateToProps)(Login);
+export default withFirebase(connect(mapStateToProps)(Login));

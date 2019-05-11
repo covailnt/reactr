@@ -1,7 +1,7 @@
 import React from "react";
 
 import AuthUserContext from "./context";
-import { withFirebase } from "../Firebase";
+import { withFirebase } from "../index.js"; //firebase/index
 
 const needsEmailVerification = authUser =>
   authUser &&
@@ -37,12 +37,12 @@ const withEmailVerification = Component => {
                     you confirmed your E-Mail.
                   </p>
                 ) : (
-                  <p>
-                    Verify your E-Mail: Check your E-Mails (Spam folder
-                    included) for a confirmation E-Mail or send another
-                    confirmation E-Mail.
+                    <p>
+                      Verify your E-Mail: Check your E-Mails (Spam folder
+                      included) for a confirmation E-Mail or send another
+                      confirmation E-Mail.
                   </p>
-                )}
+                  )}
 
                 <button
                   type="button"
@@ -53,8 +53,8 @@ const withEmailVerification = Component => {
                 </button>
               </div>
             ) : (
-              <Component {...this.props} />
-            )
+                <Component {...this.props} />
+              )
           }
         </AuthUserContext.Consumer>
       );
