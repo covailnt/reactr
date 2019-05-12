@@ -9,7 +9,6 @@ import sagas from "./store/sagas/authentication";
 
 
 
-
 const initial_state = {
   loggedIn: "NO",
 }
@@ -18,8 +17,8 @@ const sagaMiddleWare = createSagaMiddleware();
 const middleware = applyMiddleware(sagaMiddleWare);
 const composedEnhancers = compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 const store = createStore(createAccountReducer, initial_state, composedEnhancers);
-sagaMiddleWare.run(sagas);
 
+sagaMiddleWare.run(sagas);
 
 
 

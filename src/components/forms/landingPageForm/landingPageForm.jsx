@@ -13,8 +13,6 @@ const mapStateToProps = state => {
         password: state.password
     };
 };
-
-
 const mapDispatchToProps = dispatch => {
     return {
         setEmail: email => dispatch(setEmail(email)),
@@ -32,7 +30,6 @@ class LandingPageForm extends Component {
         super(props);
         this.onClick = this.onClick.bind(this);
     }
-
     onClick() {
         this.props.logout();
     }

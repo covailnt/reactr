@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Front from "../layout/front/front";
-import LoginForm from "../forms/loginForm/loginForm";
+import SignInForm from "../forms/signInForm/signInForm";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { withFirebase } from '../../firebase';
-
+import * as ROUTES from "../../routes/constants";
 
 const mapStateToProps = state => {
   return {
@@ -12,15 +11,15 @@ const mapStateToProps = state => {
   };
 };
 
-class Login extends Component {
+class SignIn extends Component {
   render() {
     return (
 
-      this.props.loggedIn == "YES" ? <Redirect to="/landing-page" /> :
+      this.props.loggedIn == "YES" ? <Redirect to={ROUTES.HOME} /> :
         <Front>
-          <LoginForm />
+          <SignInForm />
         </Front>
     )
   }
 }
-export default withFirebase(connect(mapStateToProps)(Login));
+export default connect(mapStateToProps)(SignIn);

@@ -14,11 +14,11 @@ export function setPassword(password) {
   };
 }
 
-export function login() {
+export function signIn() {
   return { type: "LOGIN", payload: {} };
 }
 
-export function logout() {
+export function signOut() {
   return { type: "LOGOUT", payload: {} }
 }
 
