@@ -14,7 +14,6 @@ const mapStateToProps = state => {
 class SignIn extends Component {
   render() {
     return (
-
       this.props.loggedIn == "YES" ? <Redirect to={ROUTES.HOME} /> :
         <Front>
           <SignInForm />
