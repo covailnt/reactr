@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => {
 
 
 
-class LandingPageForm extends Component {
+class SignOutForm extends Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
@@ -57,4 +57,4 @@ class LandingPageForm extends Component {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPageForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignOutForm);

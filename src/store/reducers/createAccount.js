@@ -6,10 +6,10 @@ const createAccountReducer = (state = {}, action) => {
         case "SET_PASSWORD": {
             return Object.assign({}, state, { password: action.payload });
         }
-        case "LOGIN": {
+        case "SIGN_IN": {
             return Object.assign({}, state, { loggedIn: "YES" });
         }
-        case "LOGOUT": {
+        case "SIGN_OUT": {
             return Object.assign({}, state, { loggedIn: "NO" });
         }
         default:

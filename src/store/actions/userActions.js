@@ -15,10 +15,10 @@ export function setPassword(password) {
 }
 
 export function signIn() {
-  return { type: "LOGIN", payload: {} };
+  return { type: "SIGN_IN", payload: {} };
 }
 
 export function signOut() {
-  return { type: "LOGOUT", payload: {} }
+  return { type: "SIGN_OUT", payload: {} }
 }
 

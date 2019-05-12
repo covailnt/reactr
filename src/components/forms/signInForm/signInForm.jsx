@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Form, Row, Col, FormGroup, Label, Input, Alert } from "reactstrap";
 import { setEmail, setPassword } from "../../../store/actions/userActions";
 import { connect } from "react-redux";
+import * as ROUTES from "../../../routes/constants";
 
 
 const mapStateToProps = state => {
@@ -57,9 +58,9 @@ class SignInForm extends Component {
                             <h4>Log In </h4>
                         </Col>
                         <Col md="6">
-                            <Link to="/create-account" className="float-right">
+                            <Link to={ROUTES.SIGN_UP} className="float-right">
                                 Create Account
-              </Link>
+                            </Link>
                         </Col>
                         <Col md="12" />
                     </Row>
@@ -98,9 +99,9 @@ class SignInForm extends Component {
                                 </FormGroup>
                             </Col>
                             <Col md="6">
-                                <Link className="float-right" to="/forgot-password">
+                                <Link className="float-right" to={ROUTES.FORGOT_PASSWORD}>
                                     Forgot Password
-                </Link>
+                                </Link>
                             </Col>
                         </Row>
                         <br />

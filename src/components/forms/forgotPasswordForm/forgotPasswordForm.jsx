@@ -1,15 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Row,
-  Col,
-  FormGroup,
-  Label,
-  Input,
-  FormText
-} from "reactstrap";
+import { Button, Form, Row, Col, FormGroup, Label, Input, FormText } from "reactstrap";
+import * as ROUTES from "../../../routes/constants";
 
 function ForgotPassword(props) {
   return (
@@ -20,7 +12,7 @@ function ForgotPassword(props) {
             <h4>Forgot Password</h4>
           </Col>
           <Col md="6">
-            <Link className="float-right" to="/">
+            <Link className="float-right" to={ROUTES.SIGN_IN}>
               Log In
             </Link>
           </Col>
@@ -40,7 +32,6 @@ function ForgotPassword(props) {
               We'll send you a link to reset your password
             </FormText>
           </FormGroup>
-
           <Button>Reset Password</Button>
         </Form>
       </div>

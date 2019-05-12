@@ -12,20 +12,20 @@ export default function* () {
 
 
 function* watchSignIn() {
-    yield takeLatest("LOGIN_SAGA", signIn());
+    yield takeLatest("LOGIN_SAGA", signInAsync);
 }
-// function* loginAsync() {
-//     yield put(signIn());
-// }
+function* signInAsync() {
+    yield put(signIn());
+}
 
 
 
 export function* watchSignOut() {
-    yield takeLatest("LOGIN_SAGA", signOut());
+    yield takeLatest("LOGIN_SAGA", signOutAsync);
 }
-// function* signOutAsync() {
-//     yield put(signOut());
-// }
+function* signOutAsync() {
+    yield put(signOut());
+}
 
 
 
