@@ -1,31 +1,31 @@
 import { all, fork, takeLatest, put } from "redux-saga/effects"
-import { login, logout } from "../actions/userActions"
+import { signIn, signOut } from "../actions/userActions"
 
 
 export default function* () {
     yield all([
-        fork(watchLogin),
-        fork(watchLogout)
+        fork(watchSignIn),
+        fork(watchSignOut)
     ]);
 }
 
 
 
-function* watchLogin() {
-    yield takeLatest("LOGIN_SAGA", loginAsync);
+function* watchSignIn() {
+    yield takeLatest("LOGIN_SAGA", signIn());
 }
-function* loginAsync() {
-    yield put(login());
-}
+// function* loginAsync() {
+//     yield put(signIn());
+// }
 
 
 
-export function* watchLogout() {
-    yield takeLatest("LOGOUT_SAGA", logoutAsync)
+export function* watchSignOut() {
+    yield takeLatest("LOGIN_SAGA", signOut());
 }
-function* logoutAsync() {
-    yield put(logout());
-}
+// function* signOutAsync() {
+//     yield put(signOut());
+// }
 
 
 

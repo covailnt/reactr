@@ -12,8 +12,6 @@ import sagas from "./store/sagas/authentication";
 
 const initial_state = {
   loggedIn: "NO",
-  email: "",
-  password: ""
 }
 
 const sagaMiddleWare = createSagaMiddleware();
