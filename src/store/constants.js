@@ -1,2 +1,2 @@
-export const SET_EMAIL = "SET_EMAIL";
-export const SET_PASSWORD = "SET_PASSWORD";
+export const SET_SIGNED_IN = "SET_SIGNED_IN";
+export const SET_SIGNED_OUT = "SET_SIGNED_OUT";

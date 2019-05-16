@@ -2,36 +2,46 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import Routes from "./routes/routes";
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
-import createAccountReducer from "./store/reducers/createAccount";
+import auth from "./store/reducers/auth";
 import createSagaMiddleware from "redux-saga";
-import sagas from "./store/sagas/authentication";
-import SignOutForm from "./components/forms/signOutForm/signOutForm";
+import sagas from "./store/sagas/authFirebase";
+import { syncHistoryWithStore, routerReducer } from "react-router-redux";
+import { BrowserRouter as Router, browserHistory } from "react-router-dom";
 //import { withAuthentication } from "./firebase/session";
 
 
 
 const initial_state = {
-  loggedIn: "NO",
+  signedIn: "NO",
 }
+
+const rootReducer = combineReducers(auth, routerReducer);
+
 
 const sagaMiddleWare = createSagaMiddleware();
 const middleware = applyMiddleware(sagaMiddleWare);
 const composedEnhancers = compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-const store = createStore(createAccountReducer, initial_state, composedEnhancers);
+
+const store = createStore(auth, initial_state, composedEnhancers);
+
+
 sagaMiddleWare.run(sagas);
+
 
 
 
 class App extends Component {
   render() {
     return (
-      // <Routes />    <SignOutForm />
       <Provider store={store}>
-        <Routes />
+        <Router >
+          <Routes />
+        </Router>
       </Provider>
     );
   }
 }
+
 export default App;
 //export default withAuthentication(App);
 

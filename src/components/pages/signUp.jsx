@@ -1,13 +1,25 @@
-import React from "react";
+import React, { Component } from "react";
 import Front from "../layout/front/front"
 import SignUpForm from '../forms/signUpForm/signUpForm';
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import * as ROUTES from "../../routes/constants";
 
-function SignUp(props) {
-  return (
-    <Front>
-      <SignUpForm></SignUpForm>
-    </Front>
-  )
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.loggedIn
+  };
+};
+
+class SignUp extends Component {
+  render() {
+    return (
+      this.props.loggedIn == "YES" ? <Redirect to={ROUTES.HOME} /> :
+        <Front>
+          <SignUpForm></SignUpForm>
+        </Front>
+    )
+  }
 }
 
-export default SignUp;
+export default connect(mapStateToProps)(SignUp);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Form, Row, Col, FormGroup, Label, Input, Alert } from "reactstrap";
-import { setEmail, setPassword } from "../../../store/actions/userActions";
+
 import { connect } from "react-redux";
 import * as ROUTES from "../../../routes/constants";
 
@@ -17,23 +17,23 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setEmail: email => dispatch(setEmail(email)),
-        setPassword: password => dispatch(setPassword(password)),
-        login: () => dispatch({ type: "LOGIN_SAGA", payload: {} })
+        signIn: () => dispatch({ type: "SIGN_IN_SAGA", payload: {} })
     };
 };
 
 
 class SignInForm extends Component {
 
+
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
     }
-
-    onClick = () => {
-        this.props.login();
+    onClick = (e) => {
+        this.props.signIn();
+        e.preventDefault();
     };
+
 
     onChange = e => {
         switch (e.target.name) {

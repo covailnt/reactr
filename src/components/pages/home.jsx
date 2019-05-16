@@ -6,14 +6,14 @@ import SignOutForm from "../forms/signOutForm/signOutForm";
 import * as ROUTES from "../../routes/constants"
 
 const mapStateToProps = (state) => {
-    return { loggedIn: state.loggedIn }
+    return { signedIn: state.signedIn }
 }
 
 
 class Home extends Component {
     render() {
         return (
-            this.props.loggedIn == "NO" ? <Redirect to={ROUTES.SIGN_IN} /> :
+            this.props.signedIn == "NO" ? <Redirect to={ROUTES.SIGN_IN} /> :
                 <Front>
                     <SignOutForm />
                 </Front>

@@ -7,14 +7,14 @@ import * as ROUTES from "../../routes/constants";
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.loggedIn
+    signedIn: state.signedIn
   };
 };
 
 class SignIn extends Component {
   render() {
     return (
-      this.props.loggedIn == "YES" ? <Redirect to={ROUTES.HOME} /> :
+      this.props.signedIn == "YES" ? <Redirect to={ROUTES.HOME} /> :
         <Front>
           <SignInForm />
         </Front>

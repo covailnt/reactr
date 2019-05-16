@@ -12,7 +12,7 @@ export default function* () {
 
 
 function* watchSignIn() {
-    yield takeLatest("LOGIN_SAGA", signInAsync);
+    yield takeLatest("SIGN_IN_SAGA", signInAsync);
 }
 function* signInAsync() {
     yield put(signIn());
@@ -21,7 +21,7 @@ function* signInAsync() {
 
 
 export function* watchSignOut() {
-    yield takeLatest("LOGIN_SAGA", signOutAsync);
+    yield takeLatest("SIGN_OUT_SAGA", signOutAsync);
 }
 function* signOutAsync() {
     yield put(signOut());
