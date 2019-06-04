@@ -1,4 +1,5 @@
-import { takeLatest, put } from "redux-saga/effects";
+import axios from "axios";
+import { call, takeLatest, put } from "redux-saga/effects";
 
 import { signIn, signOut } from "../actions/userActions";
 
@@ -14,3 +15,9 @@ function* signInAsync() {
 function* signOutAsync() {
     yield put(signOut());
 }
+
+// function* databaseCall() {
+//     yield call(functionName, arg1, arg2, ...argN);
+
+//     yield call(axios.post, "firebase.com")
+// }
