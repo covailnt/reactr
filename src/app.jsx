@@ -4,7 +4,7 @@ import Routes from "./routes/routes";
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import auth from "./store/reducers/auth";
 import createSagaMiddleware from "redux-saga";
-import sagas from "./store/sagas/authFirebase";
+import sagas from "./store/sagas";
 import { syncHistoryWithStore, routerReducer } from "react-router-redux";
 import { BrowserRouter as Router, browserHistory } from "react-router-dom";
 //import { withAuthentication } from "./firebase/session";
