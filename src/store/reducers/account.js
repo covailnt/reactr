@@ -1,6 +1,6 @@
 import * as actionTypes from "../constants";
 
-const createAccountReducer = (state = {}, action) => {
+const accountReducer = (state = {}, action) => {
     switch (action.type) {
 
         case actionTypes.SET_SIGNED_IN: {
@@ -15,4 +15,4 @@ const createAccountReducer = (state = {}, action) => {
 
 };
 
-export default createAccountReducer;
+export default accountReducer;

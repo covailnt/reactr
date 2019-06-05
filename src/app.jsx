@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import React, { Component } from "react";
 import { Provider } from "react-redux";
-import { reactReduxFirebase, firebaseReducer } from "react-redux-firebase";
+import { reactReduxFirebase, firebaseReducer, getFirebase } from "react-redux-firebase";
 import { BrowserRouter as Router } from "react-router-dom";
 import { routerReducer } from "react-router-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
@@ -9,7 +9,7 @@ import createSagaMiddleware from "redux-saga";
 
 import { config } from "./firebase/firebase";
 import Routes from "./routes/routes";
-import auth from "./store/reducers/auth";
+import accountReducer from "./store/reducers/account";
 import sagas from "./store/sagas";
 //import { withAuthentication } from "./firebase/session";
 
@@ -19,11 +19,11 @@ const rrfConfig = {};
 firebase.initializeApp(config);
 
 const initial_state = {
-  signedIn: "NO",
+  account: { signedIn: "NO" }
 }
 
 const rootReducer = combineReducers({
-  auth,
+  account: accountReducer,
   firebase: firebaseReducer,
   routerReducer
 });
@@ -38,7 +38,7 @@ const composedEnhancers = compose(
 
 const store = createStore(rootReducer, initial_state, composedEnhancers);
 
-sagaMiddleWare.run(sagas);
+sagaMiddleWare.run(sagas, getFirebase);
 
 class App extends Component {
   render() {

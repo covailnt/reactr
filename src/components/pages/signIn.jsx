@@ -7,7 +7,7 @@ import * as ROUTES from "../../routes/constants";
 
 const mapStateToProps = state => {
   return {
-    signedIn: state.signedIn
+    signedIn: state.account.signedIn
   };
 };
 

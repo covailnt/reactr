@@ -6,7 +6,7 @@ import SignOutForm from "../forms/signOutForm/signOutForm";
 import * as ROUTES from "../../routes/constants"
 
 const mapStateToProps = (state) => {
-    return { signedIn: state.signedIn }
+    return { signedIn: state.account.signedIn }
 }
 
 
