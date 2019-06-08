@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
 import { Button, Form, Row, Col, FormGroup, Label, Input, Badge } from 'reactstrap';
+import { CardElement, injectStripe } from 'react-stripe-elements';
 
 
+class PaymentForm extends Component {
 
-
-class Payment extends Component {
-    state = {
-        cardNumberValue: '',
-        nameValue: '',
-        emailAddressValue: '',
-        formValid: false
+    constructor(props) {
+        super(props);
+        this.submit = this.submit.bind(this);
     }
-    handleUserInput = (e) => {
-        const { name, value } = e.target;
-        this.setState({ [name]: value },
-            () => { this.validateField(name, value) });
+
+
+    async submit(ev) {
+        let { token } = await this.props.stripe.createToken({ name: "Name" });
+        let response = await fetch("/charge", {
+            method: "POST",
+            headers: { "Content-Type": "text/plain" },
+            body: token.id
+        });
+        if (response.ok) console.log("Purchase Complete!")
+        if (response.ok) this.setState({ complete: true });
     }
-    validateField(name, value) {
-        let deleteAccountValue = this.state.deleteAccount;
 
-        let formValid = deleteAccountValue.match(/^(DELETE)$/);
 
-        this.setState({
-            formValid: formValid
-        }, this.validateForm);
 
-    }
     render() {
         return (
             <Row className="Account-widget Account-payment" >
@@ -33,33 +31,12 @@ class Payment extends Component {
                     <h4>Payment</h4>
                 </Col>
                 <Col sm="12" md="9">
-                    <Form>
-                        <FormGroup>
-                            <Label for="cardNumber">Card Number</Label>
-                            <Input type="text" name="cardNumber" id="cardNumber" placeholder="Insert Credit Card Number" />
-                        </FormGroup>
-                        <FormGroup row>
-                            <Col>
-                                <Label> Expiration date</Label>
-                                <Input type="text" id="experationdate" />
-                            </Col>
-                            <Col>
-                                <Label> CVC Number</Label>
-                                <Input type="text" id="cvcnumber" />
-                            </Col>
-                        </FormGroup>
-                        <FormGroup>
-                            <h4>
-                                <Badge outline>
-                                    powerd by <span id="stripe_badge">stripe</span>
-                                </Badge>
-                            </h4>
-                            <br />
-                        </FormGroup>
-
-                        <Button>Save Payment Information</Button>
-
-                    </Form>
+                    <CardElement />
+                    <br />
+                    <p> Amount </p>
+                    <Input>  </Input>
+                    <br />
+                    <Button className="btn btn-primary" onclick={this.submit}> don't spend it all in one place </Button>
                 </Col>
             </Row>
         );
@@ -67,4 +44,6 @@ class Payment extends Component {
 
 }
 
-export default Payment;
+
+
+export default injectStripe(PaymentForm);
