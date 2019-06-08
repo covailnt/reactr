@@ -8,20 +8,13 @@ export default [
 ];
 
 function* signInAsync(getFirebase) {
-
-    // DO I NEED CALL HERE?
-    yield console.log("hello world" + getFirebase());
-    //yield getFirebase().auth().login("jaydeniscool@duh", "password");
+    yield console.log(getFirebase.toLocaleString);
     yield put(signIn());
 }
 
-function* signOutAsync(getFirebase) {
-
+function* signOutAsync() {
     yield put(signOut());
 }
-
-
-
 
 // function* databaseCall() {
 //     yield call(functionName, arg1, arg2, ...argN);
