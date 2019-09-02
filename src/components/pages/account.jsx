@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { Elements, StripeProvider } from 'react-stripe-elements';
+
+import { Redirect } from "react-router-dom";
+import * as ROUTES from "../../routes/constants"
 import Front from '../layout/front/front';
 import ProfileForm from "../forms/profileForm/profileForm";
 import PaymentForm from "../forms/paymentForm/paymentForm";
+import SignOutForm from "../forms/signOutForm/signOutForm";
 import ResetPasswordForm from "../forms/resetPasswordForm/resetPasswordForm";
-import { Elements, StripeProvider } from 'react-stripe-elements';
+
+
+
+
+const mapStateToProps = (state) => {
+    return { signedIn: state.account.signedIn }
+}
+
 
 class Account extends Component {
     render() {
         return (
+            this.props.signedIn == "NO" ? <Redirect to={ROUTES.SIGN_IN} /> :
             <Front>
                 {/** <ProfileForm /> */}
 
@@ -17,11 +31,11 @@ class Account extends Component {
                     </Elements>
 
                 </StripeProvider>
-
+                <SignOutForm />
                 {/*<ResetPasswordForm /> */}
             </Front>
         );
     }
 }
 
-export default Account;
+export default  connect(mapStateToProps)(Account);
