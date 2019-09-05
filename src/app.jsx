@@ -11,7 +11,7 @@ import { config } from "./firebase/firebase";
 import Routes from "./routes/routes";
 import accountReducer from "./store/reducers/account";
 import sagas from "./store/sagas";
-//import { withAuthentication } from "./firebase/session";
+import { withAuthentication } from "./firebase/session";
 
 // react-redux-firebase config
 const rrfConfig = {};
@@ -23,17 +23,17 @@ const initial_state = {
 }
 
 const rootReducer = combineReducers({
-  account: accountReducer,
-  firebase: firebaseReducer,
-  routerReducer
+  account: accountReducer
+  ,firebase: firebaseReducer
+  ,routerReducer
 });
 
 const sagaMiddleWare = createSagaMiddleware();
 const middleware = applyMiddleware(sagaMiddleWare);
 const composedEnhancers = compose(
-  middleware,
-  reactReduxFirebase(firebase, rrfConfig),
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  middleware
+  ,reactReduxFirebase(firebase, rrfConfig)
+  //,window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 );
 
 const store = createStore(rootReducer, initial_state, composedEnhancers);
