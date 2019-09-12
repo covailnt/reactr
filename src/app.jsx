@@ -13,6 +13,11 @@ import accountReducer from "./store/reducers/account";
 import sagas from "./store/sagas";
 import { withAuthentication } from "./firebase/session";
 
+
+
+//blah blah blah
+
+
 // react-redux-firebase config
 const rrfConfig = {};
 
