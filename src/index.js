@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./app";
-//import Firebase, { FirebaseContext } from "./firebase";
+import Firebase, { FirebaseContext } from "./firebase";
 
 
 
 
 ReactDOM.render(
-    //<FirebaseContext.Provider value={new Firebase()}>
+    <FirebaseContext.Provider value={new Firebase()}>
     <App />,
-    //</FirebaseContext.Provider>,
+    </FirebaseContext.Provider>,
     document.getElementById("app")
 );
 

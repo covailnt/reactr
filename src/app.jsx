@@ -57,6 +57,6 @@ class App extends Component {
   }
 }
 
-export default App;
-//export default withAuthentication(App);
+// export default App;
+export default withAuthentication(App);
 
