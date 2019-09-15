@@ -14,21 +14,21 @@ export const config = {
 class Firebase {
   constructor() {
     //console.log(config);
-    if (!this.app) {
+    //if (!this.app) { }
       this.app = app.initializeApp(config);
     
 
     /* Helper */
     //this.serverValue = app.database.ServerValue;
     //this.emailAuthProvider = app.auth.EmailAuthProvider;
-      this.auth = app.auth();
-       //this.db = app.database();
+    this.auth = app.auth();
+     //this.db = app.database();
 
-      /* Social Sign In Method Provider */
-      //this.googleProvider = new app.auth.GoogleAuthProvider();
-      //this.facebookProvider = new app.auth.FacebookAuthProvider();
-      //this.twitterProvider = new app.auth.TwitterAuthProvider();
-    }
+    /* Social Sign In Method Provider */
+    //this.googleProvider = new app.auth.GoogleAuthProvider();
+    //this.facebookProvider = new app.auth.FacebookAuthProvider();
+    //this.twitterProvider = new app.auth.TwitterAuthProvider();
+
    
   }
 

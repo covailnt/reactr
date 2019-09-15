@@ -1,4 +1,3 @@
-import firebase from "firebase/app";
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { reactReduxFirebase, firebaseReducer, getFirebase } from "react-redux-firebase";
@@ -11,17 +10,19 @@ import { config } from "./firebase/firebase";
 import Routes from "./routes/routes";
 import accountReducer from "./store/reducers/account";
 import sagas from "./store/sagas";
-import { withAuthentication } from "./firebase/session";
+import Firebase, { FirebaseContext } from "./firebase";
 
 
 
-//blah blah blah
 
 
 // react-redux-firebase config
 const rrfConfig = {};
 
-firebase.initializeApp(config);
+// firebase.initializeApp(config);
+const myfirebase = new Firebase();
+console.log("app.js  ----  ");
+console.log(myfirebase.app)
 
 const initial_state = {
   account: { signedIn: "NO" }
@@ -37,7 +38,7 @@ const sagaMiddleWare = createSagaMiddleware();
 const middleware = applyMiddleware(sagaMiddleWare);
 const composedEnhancers = compose(
   middleware
-  ,reactReduxFirebase(firebase, rrfConfig),
+  ,reactReduxFirebase(myfirebase.app, rrfConfig),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
@@ -49,14 +50,16 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router >
-          <Routes />
-        </Router>
+        <FirebaseContext.Provider value={myfirebase}>
+          <Router >
+            <Routes />
+          </Router>
+        </FirebaseContext.Provider>,
       </Provider>
     );
   }
 }
 
 // export default App;
-export default withAuthentication(App);
+export default App;
 

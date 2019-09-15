@@ -7,6 +7,8 @@ import Account from "../components/pages/account";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import * as ROUTES from "./constants"
 
+import { withAuthentication } from "../firebase/session";
+
 
 
 function Routes() {
@@ -22,4 +24,4 @@ function Routes() {
     )
 }
 
-export default Routes;
+export default withAuthentication(Routes);
