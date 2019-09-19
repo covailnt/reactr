@@ -1,6 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import { firebase } from "react-redux-firebase";
 
 export const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -13,33 +14,41 @@ export const config = {
 
 class Firebase {
   constructor() {
-    //console.log(config);
-    //if (!this.app) { }
-      this.app = app.initializeApp(config);
+
+    if(!!Firebase.instance){
+      return  Firebase.instance
+    }
+    Firebase.instance = this;
     
+    this.app = app.initializeApp(config);
+    this.auth = app.auth();
 
     /* Helper */
     //this.serverValue = app.database.ServerValue;
     //this.emailAuthProvider = app.auth.EmailAuthProvider;
-    this.auth = app.auth();
-     //this.db = app.database();
+    //this.db = app.database();
+
 
     /* Social Sign In Method Provider */
     //this.googleProvider = new app.auth.GoogleAuthProvider();
     //this.facebookProvider = new app.auth.FacebookAuthProvider();
     //this.twitterProvider = new app.auth.TwitterAuthProvider();
-
-   
+    
+   return this;
   }
 
+  getFirebase = () => {
+    return this.app;
+  }
   // *** Auth API ***
 
   //doCreateUserWithEmailAndPassword = (email, password) =>
   //  this.auth.createUserWithEmailAndPassword(email, password);
 
-  doSignInWithEmailAndPassword = (email, password) =>
-    this.auth.signInWithEmailAndPassword(email, password);
-
+  doSignInWithEmailAndPassword = (email, password) =>  {
+    console.log("inside doSignInWithEmailAndPassword");
+    return  this.auth.signInWithEmailAndPassword(email, password);
+  }
   // doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider);
   // doSignInWithFacebook = () => this.auth.signInWithPopup(this.facebookProvider);
   // doSignInWithTwitter = () => this.auth.signInWithPopup(this.twitterProvider);
@@ -58,7 +67,8 @@ class Firebase {
 
   // *** Merge Auth and DB User API *** //
   onAuthUserListener = (next, fallback) => {
-    console.log(this.app);
+    console.log("firebase.js : onAuthUserListener");
+    //console.log(this.app);
     return this.auth.onAuthStateChanged(authUser => {
       if (authUser) {
         this.user(authUser.uid)

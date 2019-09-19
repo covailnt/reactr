@@ -8,16 +8,14 @@ import * as ROUTES from "../../../routes/constants";
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.loggedIn,
-        email: state.email,
-        password: state.password
+        loggedIn: state.loggedIn
     };
 };
 
 
 const mapDispatchToProps = dispatch => {
     return {
-        signIn: () => dispatch({ type: "SIGN_IN_SAGA", payload: {} })
+        signIn: (email, password) => dispatch({type:"SIGN_IN_SAGA", payload: { email, password}})
     };
 };
 
@@ -28,20 +26,25 @@ class SignInForm extends Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.state = {};
     }
     onClick = (e) => {
-        this.props.signIn();
         e.preventDefault();
+        this.props.signIn(this.state.email, this.state.password );
+        
     };
 
 
     onChange = e => {
         switch (e.target.name) {
             case "email":
-                this.props.setEmail(e.target.value);
+                //this.props.setEmail(e.target.value);
+                this.setState({ ...this.state , email : e.target.value});
                 break;
             case "password":
-                this.props.setPassword(e.target.value);
+                //this.props.setPassword(e.target.value);
+                this.setState({ ...this.state , password : e.target.value})
                 break;
             default:
                 console.log("default onChange createAccont from logInForm");

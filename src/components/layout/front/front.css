@@ -1,4 +1,16 @@
 .mainPanel {
-    box-shadow: 10px 0px 15px lightgrey;
+    height: 100vh;
+    box-shadow: 10px 10px  15px lightgrey;
     padding: 25px 75px;
+    z-index: 10;
+}
+
+.App-container {
+    overflow: hidden;
+}
+
+.background-col{
+    z-index: -10;
+    background:whitesmoke;
+    opacity: 90%;
 }

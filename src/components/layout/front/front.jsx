@@ -16,8 +16,9 @@ function Front(props) {
 
         </Col>
 
-        <Col sm="12" md="5" className="Placeholder-img">
+        <Col sm="12" md="5" className="background-col">
           <img
+            className="background-img"
             src="https://covailnt.com/wp-content/uploads/2017/04/FreelanceHeroFlat.png"
             alt="App Graphic"
           />
