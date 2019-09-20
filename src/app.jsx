@@ -13,18 +13,19 @@ import sagas from "./store/sagas";
 import Firebase, { FirebaseContext } from "./firebase";
 
 
-
-
+//  TODO
+//  -handle errors in sagas  
+//  -integrate  withAuthentication into redux/sagas
+//  -add other actions to sagas/forms  & make everything point to constant / action creators
+//  -make router/routes update if somethone is logged in or not
+//  -do something after re-setting password to know you did it
 
 // react-redux-firebase config
 const rrfConfig = {};
 
-// firebase.initializeApp(config);
 const myfirebase = new Firebase();
 const getFirebase = myfirebase.getFirebase;
-const initial_state = {
-  account: { signedIn: "NO" }
-}
+const initial_state = { account: { signedIn: "NO" }}   //look in local data for something like this
 
 const rootReducer = combineReducers({
   account: accountReducer
@@ -32,16 +33,15 @@ const rootReducer = combineReducers({
   ,routerReducer
 });
 
-const sagaMiddleWare = createSagaMiddleware();
-const middleware = applyMiddleware(sagaMiddleWare);
+const sagaMiddleWare          = createSagaMiddleware();
+const middleware              = applyMiddleware(sagaMiddleWare);
 const createStoreWithFirebase = compose(reactReduxFirebase(myfirebase.app, rrfConfig))(createStore)
-const composedEnhancers = compose(
+const composedEnhancers       = compose(
   middleware,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 const store = createStoreWithFirebase(rootReducer, initial_state, composedEnhancers);
-
 sagaMiddleWare.run(sagas, getFirebase);
 
 class App extends Component {
@@ -52,7 +52,7 @@ class App extends Component {
           <Router >
            <Routes />
           </Router>
-        </FirebaseContext.Provider>,
+        </FirebaseContext.Provider>
       </Provider>
     );
   }

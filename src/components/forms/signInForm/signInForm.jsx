@@ -15,7 +15,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        signIn: (email, password) => dispatch({type:"SIGN_IN_SAGA", payload: { email, password}})
+        signIn: (email, password) => dispatch({type:"SIGN_IN_EMAIL_SAGA", payload: { email, password}})
     };
 };
 
@@ -39,15 +39,13 @@ class SignInForm extends Component {
     onChange = e => {
         switch (e.target.name) {
             case "email":
-                //this.props.setEmail(e.target.value);
                 this.setState({ ...this.state , email : e.target.value});
                 break;
             case "password":
-                //this.props.setPassword(e.target.value);
                 this.setState({ ...this.state , password : e.target.value})
                 break;
             default:
-                console.log("default onChange createAccont from logInForm");
+                console.log("DEFAULT ONCHANGE FUNCTION");
         }
     };
 
