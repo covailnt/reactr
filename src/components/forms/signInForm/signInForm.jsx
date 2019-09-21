@@ -34,7 +34,7 @@ class SignInForm extends Component {
     }
 
     onClick = e => {
-        e.preventDefault();
+        
         console.log(e.target.name);
         switch (e.target.name) {
             case "email":
@@ -52,10 +52,12 @@ class SignInForm extends Component {
             default:
                 console.log("DEFAULT ONCLICK FUNC");
         }
+        e.preventDefault();
     };
 
 
     onChange = e => {
+        console.log(e.target.name);
         switch (e.target.name) {
             case "email":
                 this.setState({ ...this.state , email : e.target.value});
@@ -125,7 +127,7 @@ class SignInForm extends Component {
                             </Col>
                         </Row>
                         <br />
-                        <Button color="primary" onClick={this.onClick}>Log In</Button>
+                        <Button color="primary" name="email" onClick={this.onClick}>Log In</Button>
                     </Form>
                     <br />
                     <div className="Social-form">

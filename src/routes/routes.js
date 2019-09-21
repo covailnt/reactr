@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import SignUp from "../components/pages/signUp";
 import SignIn from "../components/pages/signIn";
 import ForgotPassword from "../components/pages/forgotPassword";
@@ -10,31 +10,38 @@ import {connect} from "react-redux";
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.loggedIn
+        signedIn: state.account.signedIn
     };
 };
 
-function Routes() {
-    return (
+class Routes extends Component {
+    
+    render(){
+        return (
 
-        this.props.signedIn == "YES" ? 
+            this.props.signedIn == "YES" ? 
 
-        <Switch>
-            <Route path="/" exact strict component={Home} />
-            <Route path={ROUTES.HOME} exact strict component={Home} />
-            <Route path={ROUTES.ACCOUNT} exact strict component={Account} />
-        </Switch>
-        
-        :
+            <Switch>
+                <Route path="/"                         exact strict component={Home} />
+                <Route path={ROUTES.FORGOT_PASSWORD}    exact strict component={ForgotPassword} />
+                <Route path={ROUTES.HOME}               exact strict component={Home} />
+                <Route path={ROUTES.ACCOUNT}            exact strict component={Account} />
+            </Switch>
+            
+            :
 
-        <Switch>
-            <Route path="/" exact strict component={SignIn} />
-            <Route path={ROUTES.SIGN_IN} exact strict component={SignIn} />
-            <Route path={ROUTES.FORGOT_PASSWORD} exact strict component={ForgotPassword} />
-            <Route path={ROUTES.SIGN_UP} exact strict component={SignUp} />
-        </Switch>
+            <Switch>
+                <Route path="/"                         exact strict component={SignIn} />
+                <Route path={ROUTES.SIGN_IN}            exact strict component={SignIn} />
+                <Route path={ROUTES.FORGOT_PASSWORD}    exact strict component={ForgotPassword} />
+                <Route path={ROUTES.SIGN_UP}            exact strict component={SignUp} />
+                <Route path={ROUTES.HOME}               exact strict component={Home} />
+                <Route path={ROUTES.ACCOUNT}            exact strict component={Account} />
+            </Switch>
 
-    )
+        )
+    }
 }
 
 export default connect(mapStateToProps)(Routes);
+//export default Routes;

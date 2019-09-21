@@ -34,12 +34,15 @@ const rootReducer = combineReducers({
   routerReducer
 });
 
+const dummy = (a) => a;
+
 const sagaMiddleWare          = createSagaMiddleware();
 const middleware              = applyMiddleware(sagaMiddleWare);
 const createStoreWithFirebase = compose(reactReduxFirebase(myfirebase.app, rrfConfig))(createStore)
 const composedEnhancers       = compose(
   middleware,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : dummy
 );
 
 const store = createStoreWithFirebase(rootReducer, initial_state, composedEnhancers);
@@ -50,7 +53,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <FirebaseContext.Provider value={myfirebase}>
-          <Router >
+          <Router>
            <Routes />
           </Router>
         </FirebaseContext.Provider>
