@@ -1,50 +1,54 @@
-import { call, takeLatest, put, take } from "redux-saga/effects";
+import { all, takeLatest, put, take } from "redux-saga/effects";
 import { signIn, signOut } from "../actions/userActions";
 import Firebase from  "../../firebase"
 
 
-export default [
-    takeLatest("SIGN_IN_EMAIL_SAGA" , signInEmailAsync),
-    takeLatest("SIGN_OUT_SAGA"      , signOutAsync),
-    takeLatest("SIGN_UP_EMAIL_SAGA" , signUpAsync),
-    takeLatest("RESET_PASSWORD_SAGA", resetPasswordAsync),
-    takeLatest("FACEBOOK_SAGA"      , facebookAsync),
-    takeLatest("GOOGLE_SAGA"        , googleAsync),
-    takeLatest("TWITTER_SAGA"       , twitterAsync)
-];
+export default function* (getFirebase) {
+    yield all([
+        takeLatest("SIGN_IN_EMAIL_SAGA" , signInEmailAsync,     getFirebase),
+        takeLatest("SIGN_OUT_SAGA"      , signOutAsync,         getFirebase),
+        takeLatest("SIGN_UP_EMAIL_SAGA" , signUpAsync,          getFirebase),
+        takeLatest("RESET_PASSWORD_SAGA", resetPasswordAsync,   getFirebase),
+        takeLatest("FACEBOOK_SAGA"      , facebookAsync,        getFirebase),
+        takeLatest("GOOGLE_SAGA"        , googleAsync,          getFirebase),
+        takeLatest("TWITTER_SAGA"       , twitterAsync,         getFirebase)
+    ]);
+}
  
-function* signInEmailAsync(action) {
+ 
+function* signInEmailAsync(getFirebase, action) {
+    console.log(getFirebase());
     const {email , password} = action.payload;
-    const signedIn = yield new Firebase().doSignInWithEmailAndPassword(email, password);
+    const signedIn = yield getFirebase().doSignInWithEmailAndPassword("jayrohwein@yahoo.com", "password");
     //console.log(signedIn);
 }
 
-function* signOutAsync() {
-    yield new Firebase().doSignOut();
+function* signOutAsync(getFirebase) {
+    yield getFirebase().doSignOut();
 }
 
 
-function* signUpAsync(action) {
+function* signUpAsync(getFirebase, action) {
     const {email , password} = action.payload;
-    const createUser = yield new Firebase().doCreateUserWithEmailAndPassword(email, password);
+    const createUser = yield getFirebase().doCreateUserWithEmailAndPassword(email, password);
     //console.log(createUser);
 }
 
-function* resetPasswordAsync(action){
+function* resetPasswordAsync(getFirebase, action){
     const {email} = action.payload;
-    const resetPassword = yield new Firebase().doPasswordReset(email);
+    const resetPassword = yield getFirebase().doPasswordReset(email);
     //console.log(resetPassword);
 }
 
-function* facebookAsync(action){
-    const facebookAsync = yield new Firebase().doSignInWithFacebook();
+function* facebookAsync(getFirebase){
+    const facebookAsync = yield getFirebase().doSignInWithFacebook();
     //console.log(twitterAsync);
 }
-function* googleAsync(action){
-    const googleAsync = yield new Firebase().doSignInWithGoogle();
+function* googleAsync(getFirebase){
+    const googleAsync = yield getFirebase().doSignInWithGoogle();
     //console.log(googleAsync);
 }
-function* twitterAsync(action){
-    const twitterAsync = yield new Firebase().doSignInWithTwitter();
+function* twitterAsync(getFirebase){
+    const twitterAsync = yield getFirebase().doSignInWithTwitter();
     //console.log(twitterAsync);
 }

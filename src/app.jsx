@@ -1,39 +1,34 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { reactReduxFirebase, firebaseReducer } from "react-redux-firebase";
-import { BrowserRouter as Router } from "react-router-dom";
-import { routerReducer } from "react-router-redux";
+import { routerReducer, BrowserHistory, routerMiddleware} from "react-router-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 
-import { config } from "./firebase/firebase";
 import Routes from "./routes/routes";
-import accountReducer from "./store/reducers/account";
-import sagas from "./store/sagas";
+import sagas from "./store/sagas/firebaseSagas";
 import Firebase, { FirebaseContext } from "./firebase";
-import withAuthentication from "./firebase/session/withAuthentication";
 
 
 //      TODO
 //
-//        -handle errors in sagas 
-// 
-//        -integrate  withAuthentication into redux/sagas   / make things look at firebase Reducer  not Account Reducer
-//
-//        -add other actions to sagas/forms  & make everything point to constant / action creators
-//
+//        -handle errors in sagas , rejected email / passords ect.
+//        -replace  literals with  action creators &   constants
+//        -push route after login / logout event
 //        -default route "page not found"  
-//
 //        -do something after re-setting password to know you did it
+//        - use localStorage  and set rrf to presence: false;
 
 
+
+//react-redux-firebase config
 const rrfConfig = {};
+//presence: false; 
 
-const myfirebase            = new Firebase();
-const getFirebase           = myfirebase.getFirebase;
-const fbauth_initial_state  =  JSON.parse(localStorage.getItem("firebaseAuth")) ? JSON.parse(localStorage.getItem("firebaseAuth")) : {};
-const initial_state         = { account: { signedIn: "NO" }, firebase : {auth: fbauth_initial_state}};  //look in local data for something like this
-
+const firebase              = new Firebase();
+const getFirebase           = () => {return firebase};
+const initial_state         = { firebase : {}}; 
+console.log(firebase.getFirebase());
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
   routerReducer
@@ -41,8 +36,9 @@ const rootReducer = combineReducers({
 
 
 const sagaMiddleWare          = createSagaMiddleware();
-const middleware              = applyMiddleware(sagaMiddleWare);
-const createStoreWithFirebase = compose(reactReduxFirebase(myfirebase.app, rrfConfig))(createStore)
+const routerMiddleWare        = routerMiddleware(BrowserHistory);
+const middleware              = applyMiddleware(sagaMiddleWare, routerMiddleWare);
+const createStoreWithFirebase = compose(reactReduxFirebase(firebase.app, rrfConfig))(createStore)
 const composedEnhancers       = compose(
   middleware,
   window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (dummyFunction) => dummyFunction  
@@ -55,7 +51,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <FirebaseContext.Provider value={myfirebase}>
+        <FirebaseContext.Provider value={firebase}>
            <Routes />
         </FirebaseContext.Provider>
       </Provider>

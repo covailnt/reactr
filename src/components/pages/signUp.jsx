@@ -5,11 +5,6 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as ROUTES from "../../routes/constants";
 
-const mapStateToProps = state => {
-  return {
-    signedIn: state.account.signedIn
-  };
-};
 
 class SignUp extends Component {
   render() {
@@ -22,4 +17,4 @@ class SignUp extends Component {
   }
 }
 
-export default connect(mapStateToProps)(SignUp);
+export default SignUp;
