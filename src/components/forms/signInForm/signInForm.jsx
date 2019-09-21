@@ -15,7 +15,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        signIn: (email, password) => dispatch({type:"SIGN_IN_EMAIL_SAGA", payload: { email, password}})
+        signInEmail:    (email, password) => dispatch({type:"SIGN_IN_EMAIL_SAGA",   payload: { email, password}}), 
+        signInFacebook: () => dispatch({type:"FACEBOOK_SAGA" ,       payload: {}}),
+        signInGoogle:   () => dispatch({type:"GOOGLE_SAGA",          payload: {}}),
+        signInTwitter:  () => dispatch({type:"TWITTER_SAGA",         payload: {}}),
     };
 };
 
@@ -29,10 +32,26 @@ class SignInForm extends Component {
         this.onChange = this.onChange.bind(this);
         this.state = {};
     }
-    onClick = (e) => {
+
+    onClick = e => {
         e.preventDefault();
-        this.props.signIn(this.state.email, this.state.password );
-        
+        console.log(e.target.name);
+        switch (e.target.name) {
+            case "email":
+                this.props.signInEmail(this.state.email, this.state.password );
+                break;
+            case "facebook":
+                this.props.signInFacebook();
+                break;
+            case "google":
+                this.props.signInGoogle();
+                break;
+            case "twitter":
+                this.props.signInTwitter();
+                break;
+            default:
+                console.log("DEFAULT ONCLICK FUNC");
+        }
     };
 
 
@@ -45,8 +64,8 @@ class SignInForm extends Component {
                 this.setState({ ...this.state , password : e.target.value})
                 break;
             default:
-                console.log("DEFAULT ONCHANGE FUNCTION");
-        }
+                console.log("DEFAULT ONCHANGE FUNC");
+        };
     };
 
 
@@ -110,19 +129,19 @@ class SignInForm extends Component {
                     </Form>
                     <br />
                     <div className="Social-form">
-                        <Button id="facebook" color="primary" block>
+                        <Button id="facebook" name="facebook" color="primary" block onClick={this.onClick}>
                             Log In with Facebook
-            </Button>
-                        <Button id="google" color="secondary" block>
+                        </Button>
+                        <Button id="google" name="google" color="secondary" block onClick={this.onClick}>
                             Log In with Google
-            </Button>
-                        <Button id="twitter" color="success" block>
+                        </Button>
+                        <Button id="twitter" name="twitter" color="success" block onClick={this.onClick}>
                             Log In with Twitter
-            </Button>
+                        </Button>
                     </div>
                 </div>
             </div>
         );
-    }
+    };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

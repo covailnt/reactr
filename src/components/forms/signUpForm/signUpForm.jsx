@@ -4,15 +4,17 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { isValidFormat } from "@firebase/util";
 
-const mapStateToProps = state => {return {loggedIn: state.loggedIn}};
-
-const mapDispatchToProps = dispatch => {return{ signUp: (email, password) => dispatch({type:"SIGN_UP_EMAIL_SAGA", payload: { email, password}})}};
+const mapDispatchToProps = dispatch => {
+  return{ signUp: (email, password)  => dispatch({type:"SIGN_UP_EMAIL_SAGA", payload: { email, password}}),
+          signInFacebook:         () => dispatch({type:"FACEBOOK_SAGA" ,     payload: {}}),
+          signInGoogle:           () => dispatch({type:"GOOGLE_SAGA",        payload: {}}),
+          signInTwitter:          () => dispatch({type:"TWITTER_SAGA",       payload: {}}) }
+};
 
 class CreateAccountForm extends Component {
-
   constructor(props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
+    this.onClick  = this.onClick.bind(this);
     this.onChange = this.onChange.bind(this);
     this.state = {
       email:"",
@@ -21,10 +23,27 @@ class CreateAccountForm extends Component {
     };
   }
 
-  onClick = (e) => {
-      e.preventDefault();
-      this.isValid()  ? this.props.signUp(this.state.email, this.state.password ) : window.alert("EMAIL & PASS NOT VALID");
-  };
+
+  onClick = e => {
+    e.preventDefault();
+    console.log(e.target.name);
+    switch (e.target.name) {
+        case "email":
+            this.isValid()  ? this.props.signUp(this.state.email, this.state.password ) : window.alert("EMAIL & PASS NOT VALID");
+            break;
+        case "facebook":
+            this.props.signInFacebook();
+            break;
+        case "google":
+            this.props.signInGoogle();
+            break;
+        case "twitter":
+            this.props.signInTwitter();
+            break;
+        default:
+            console.log("DEFAULT ONCLICK FUNC");
+    }
+};
 
 
 
@@ -52,6 +71,8 @@ onChange = e => {
             console.log("DEFAULT ONCHANGE FUNCTION");
     }
 };
+
+
 
 
   render() {
@@ -114,21 +135,18 @@ onChange = e => {
         </div>
         <br />
         <div className="Social-form">
-          <Button id="facebook" color="primary" block>
+          <Button id="facebook" name="facebook" color="primary" block onClick={this.onClick}>
             Sign Up with Facebook
           </Button>
-          <Button id="google" color="secondary" block>
+          <Button id="google" name="google" color="secondary" block onClick={this.onClick}>
             Sign Up with Google
           </Button>
-          <Button id="twitter" color="success" block>
+          <Button id="twitter" color="success" block onClick={this.onClick}>
             Sign Up with Twitter
           </Button>
         </div>
       </div>
     );
   }
-}
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CreateAccountForm);
+  
+}export default connect(null,mapDispatchToProps)(CreateAccountForm);
