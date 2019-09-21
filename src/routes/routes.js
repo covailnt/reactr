@@ -10,16 +10,18 @@ import {connect} from "react-redux";
 
 const mapStateToProps = state => {
     return {
-        signedIn: state.account.signedIn
+        signedIn: !state.firebase.auth.isEmpty
     };
 };
 
 class Routes extends Component {
     
     render(){
+
+        console.log(this.props.signedIn)
         return (
             
-            this.props.signedIn == "YES" ? 
+            this.props.signedIn ? 
 
             <Router>
                 <Switch>

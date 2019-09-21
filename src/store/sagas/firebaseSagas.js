@@ -15,54 +15,36 @@ export default [
  
 function* signInEmailAsync(action) {
     const {email , password} = action.payload;
-    try{
-        const signedIn = yield new Firebase().doSignInWithEmailAndPassword(email, password);
-        yield put(signIn());
-    }catch(err){
-        window.alert("invalid username & password")
-    }
+    const signedIn = yield new Firebase().doSignInWithEmailAndPassword(email, password);
+    //console.log(signedIn);
 }
 
 function* signOutAsync() {
     yield new Firebase().doSignOut();
-    yield put(signOut());
 }
 
 
 function* signUpAsync(action) {
     const {email , password} = action.payload;
-    console.log( "Email: " + email + "  Password: " + password);
-    //try{
-        const createUser = yield new Firebase().doCreateUserWithEmailAndPassword(email, password);
-        console.log(createUser);
-        yield put(signIn());
-    //}catch(err){
-    //    window.alert("cant create account with this information");
-    //}
+    const createUser = yield new Firebase().doCreateUserWithEmailAndPassword(email, password);
+    //console.log(createUser);
 }
 
 function* resetPasswordAsync(action){
     const {email} = action.payload;
-    //try{
-        const resetPassword = yield new Firebase().doPasswordReset(email);
-        console.log(resetPassword);
-    //}catch(err){
-       // window.alert("cant reset your password");
-    //}
+    const resetPassword = yield new Firebase().doPasswordReset(email);
+    //console.log(resetPassword);
 }
 
 function* facebookAsync(action){
     const facebookAsync = yield new Firebase().doSignInWithFacebook();
-    console.log(twitterAsync);
-    yield put(signIn());
+    //console.log(twitterAsync);
 }
 function* googleAsync(action){
     const googleAsync = yield new Firebase().doSignInWithGoogle();
-    console.log(googleAsync);
-    yield put(signIn());
+    //console.log(googleAsync);
 }
 function* twitterAsync(action){
     const twitterAsync = yield new Firebase().doSignInWithTwitter();
-    console.log(twitterAsync);
-    yield put(signIn());
+    //console.log(twitterAsync);
 }

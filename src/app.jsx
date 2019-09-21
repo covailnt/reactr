@@ -11,40 +11,44 @@ import Routes from "./routes/routes";
 import accountReducer from "./store/reducers/account";
 import sagas from "./store/sagas";
 import Firebase, { FirebaseContext } from "./firebase";
+import withAuthentication from "./firebase/session/withAuthentication";
 
 
-//  TODO
-//  -handle errors in sagas  
-//  -integrate  withAuthentication into redux/sagas   / make things look at firebase Reducer  not Account Reducer
-//  -add other actions to sagas/forms  & make everything point to constant / action creators
-//  -default route "page not found"  
-//  -do something after re-setting password to know you did it
+//      TODO
+//
+//        -handle errors in sagas 
+// 
+//        -integrate  withAuthentication into redux/sagas   / make things look at firebase Reducer  not Account Reducer
+//
+//        -add other actions to sagas/forms  & make everything point to constant / action creators
+//
+//        -default route "page not found"  
+//
+//        -do something after re-setting password to know you did it
 
 
 const rrfConfig = {};
 
-const myfirebase = new Firebase();
-const getFirebase = myfirebase.getFirebase;
-const initial_state = { account: { signedIn: "NO" }}   //look in local data for something like this
+const myfirebase            = new Firebase();
+const getFirebase           = myfirebase.getFirebase;
+const fbauth_initial_state  =  JSON.parse(localStorage.getItem("firebaseAuth")) ? JSON.parse(localStorage.getItem("firebaseAuth")) : {};
+const initial_state         = { account: { signedIn: "NO" }, firebase : {auth: fbauth_initial_state}};  //look in local data for something like this
 
 const rootReducer = combineReducers({
-  account:  accountReducer,
   firebase: firebaseReducer,
   routerReducer
 });
 
-const dummy = (a) => a;
 
 const sagaMiddleWare          = createSagaMiddleware();
 const middleware              = applyMiddleware(sagaMiddleWare);
 const createStoreWithFirebase = compose(reactReduxFirebase(myfirebase.app, rrfConfig))(createStore)
 const composedEnhancers       = compose(
   middleware,
-  //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : dummy
+  window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (dummyFunction) => dummyFunction  
 );
 
-const store = createStoreWithFirebase(rootReducer, initial_state, composedEnhancers);
+const store = createStoreWithFirebase(rootReducer,initial_state, composedEnhancers);
 sagaMiddleWare.run(sagas, getFirebase);
 
 class App extends Component {

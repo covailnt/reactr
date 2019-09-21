@@ -36,7 +36,7 @@ class PaymentForm extends Component {
                     <p> Amount </p>
                     <Input>  </Input>
                     <br />
-                    <Button className="btn btn-primary" onclick={this.submit}> don't spend it all in one place </Button>
+                    <Button className="btn btn-primary" onClick={this.submit}> don't spend it all in one place </Button>
                 </Col>
             </Row>
         );

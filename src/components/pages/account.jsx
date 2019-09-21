@@ -13,15 +13,10 @@ import ResetPasswordForm from "../forms/resetPasswordForm/resetPasswordForm";
 
 
 
-const mapStateToProps = (state) => {
-    return { signedIn: state.account.signedIn }
-}
-
 
 class Account extends Component {
     render() {
         return (
-            this.props.signedIn == "NO" ? <Redirect to={ROUTES.SIGN_IN} /> :
             <Front>
                 {/** <ProfileForm /> */}
 
@@ -38,4 +33,4 @@ class Account extends Component {
     }
 }
 
-export default  connect(mapStateToProps)(Account);
+export default(Account);
