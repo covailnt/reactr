@@ -15,11 +15,10 @@ import Firebase, { FirebaseContext } from "./firebase";
 
 //  TODO
 //  -handle errors in sagas  
-//  -integrate  withAuthentication into redux/sagas
+//  -integrate  withAuthentication into redux/sagas   / make things look at firebase Reducer  not Account Reducer
 //  -add other actions to sagas/forms  & make everything point to constant / action creators
 //  -default route "page not found"  
 //  -do something after re-setting password to know you did it
-// react-redux-firebase config
 
 
 const rrfConfig = {};
@@ -53,9 +52,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <FirebaseContext.Provider value={myfirebase}>
-          <Router>
            <Routes />
-          </Router>
         </FirebaseContext.Provider>
       </Provider>
     );

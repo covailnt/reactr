@@ -15,10 +15,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        signInEmail:    (email, password) => dispatch({type:"SIGN_IN_EMAIL_SAGA",   payload: { email, password}}), 
-        signInFacebook: () => dispatch({type:"FACEBOOK_SAGA" ,       payload: {}}),
-        signInGoogle:   () => dispatch({type:"GOOGLE_SAGA",          payload: {}}),
-        signInTwitter:  () => dispatch({type:"TWITTER_SAGA",         payload: {}}),
+        signInEmail:    (email, password)   => dispatch({type:"SIGN_IN_EMAIL_SAGA",   payload: { email, password}}), 
+        signInFacebook: ()                  => dispatch({type:"FACEBOOK_SAGA" ,       payload: {}}),
+        signInGoogle:   ()                  => dispatch({type:"GOOGLE_SAGA",          payload: {}}),
+        signInTwitter:  ()                  => dispatch({type:"TWITTER_SAGA",         payload: {}}),
     };
 };
 
