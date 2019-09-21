@@ -17,7 +17,7 @@ import Firebase, { FirebaseContext } from "./firebase";
 //  -handle errors in sagas  
 //  -integrate  withAuthentication into redux/sagas
 //  -add other actions to sagas/forms  & make everything point to constant / action creators
-//  -make router/routes update if somethone is logged in or not
+//  -default route "page not found"  
 //  -do something after re-setting password to know you did it
 
 // react-redux-firebase config
@@ -28,9 +28,9 @@ const getFirebase = myfirebase.getFirebase;
 const initial_state = { account: { signedIn: "NO" }}   //look in local data for something like this
 
 const rootReducer = combineReducers({
-  account: accountReducer
-  ,firebase: firebaseReducer
-  ,routerReducer
+  account:  accountReducer,
+  firebase: firebaseReducer,
+  routerReducer
 });
 
 const sagaMiddleWare          = createSagaMiddleware();
