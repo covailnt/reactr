@@ -18,7 +18,8 @@ import Firebase, { FirebaseContext } from "./firebase";
 //  -integrate  withAuthentication into redux/sagas
 //  -add other actions to sagas/forms  & make everything point to constant / action creators
 //  -make router/routes update if somethone is logged in or not
-//  -do something after re-setting password to know you did it
+//  -do something after re-setting password,  to know an email was send
+
 
 // react-redux-firebase config
 const rrfConfig = {};
